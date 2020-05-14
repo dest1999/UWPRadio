@@ -17,7 +17,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>UWP_test_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>UWP_radio_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>D6C9A2E0CC84CBFA7BDCBC48C6D64CB9400BEB9D</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -133,6 +134,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <PRIResource Include="Assets\Stations.resw" />
+    <None Include="UWP_radio_TemporaryKey.pfx" />
     <None Include="UWP_test_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
