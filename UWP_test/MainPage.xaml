@@ -14,7 +14,8 @@
         <Button x:Name="Pause" Content="Pause" Margin="155,298,0,0" Width="100" Click="Pause_Click" VerticalAlignment="Top"/>
         <Button x:Name="changeAlex" Content="ChangeAlex" Margin="15,366,0,0" Width="100" Click="ChangeTrack_Click" VerticalAlignment="Top"/>
         <Button x:Name="changeHot" Content="ChangeHot" Margin="155,366,0,0" Width="100" Click="ChangeHot_Click" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <ListBox x:Name="listBoxStations" HorizontalAlignment="Left" Height="258" Margin="15,10,0,0" VerticalAlignment="Top" Width="320" BorderThickness="4" BorderBrush="Gainsboro" SelectionMode="Single" DoubleTapped="ListBox_DoubleTapped" />
+        <ListBox x:Name="listBoxStations" Height="258" Margin="15,10,15,0" VerticalAlignment="Top" BorderThickness="4" BorderBrush="Gainsboro" 
+                 SelectionMode="Single" DoubleTapped="ListBox_DoubleTapped" ItemsSource="{x:Bind stations}" DisplayMemberPath="Name" />
 
     </Grid>
 </Page>

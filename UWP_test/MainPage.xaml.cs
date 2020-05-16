@@ -27,7 +27,6 @@ namespace UWP_test
          * сохранение и считывание станций через файл (сериализация?)
          * добавление и удаление станций
          * сортировка списка станций
-         * биндинг из коллекции в listboxStations
          * фоновое воспроизведение
          */
 
@@ -94,18 +93,8 @@ namespace UWP_test
             stations.Add(new Station("Вести FM", "http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps"));
             stations.Add(new Station("Радио КП", "http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3"));
             stations.Add(new Station("М-Радио", "http://icecast.rest.str.ru:8000/mradio.aac"));
-
-            //stations.Sort()
-            FillListBoxStations();
         }
 
-        private void FillListBoxStations()
-        {
-            foreach (var item in stations)
-            {
-                listBoxStations.Items.Add(item.Name);
-            }
-        }
 
         public MainPage()
         {
