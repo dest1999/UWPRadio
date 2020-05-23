@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -36,9 +38,13 @@ namespace UWP_test
     {
         #region Globals
 
-            Uri uri = new Uri("ms-appx:///assets/Lady_Gaga_-_Alejandro.mp3");
-            Uri uriHot = new Uri("ms-appx:///assets/Katy Perry - Hot N Cold.mp3");
-            List<Station> stations = new List<Station>();
+        Uri uri = new Uri("ms-appx:///assets/Lady_Gaga_-_Alejandro.mp3");
+        Uri uriHot = new Uri("ms-appx:///assets/Katy Perry - Hot N Cold.mp3");
+        Uri uriFileStations = new Uri("ms-appx:///assets/Stations.xml");
+        List<Station> stations = new List<Station>();
+
+        XmlSerializer serializer = new XmlSerializer(typeof(List<Station>));
+        string content;
 
         #endregion
 
@@ -93,8 +99,40 @@ namespace UWP_test
             stations.Add(new Station("Вести FM", "http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps"));
             stations.Add(new Station("Радио КП", "http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3"));
             stations.Add(new Station("М-Радио", "http://icecast.rest.str.ru:8000/mradio.aac"));
+
+            //stations.Sort()
         }
 
+        private void LoadStations()
+        {
+            
+
+            /*using (StreamReader reader = new StreamReader(new FileStream(@"Stations.xml", FileMode.Open)))
+            {
+                return (List<Station>)serializer.Deserialize(reader);
+            }*/
+        }
+
+        private async void SaveStations()
+        {
+            StringWriter stringWriter = new StringWriter();
+            serializer.Serialize(stringWriter, stations);
+            content = stringWriter.ToString();
+            
+
+            //StorageFile file = new StorageFile
+
+            // XmlWriter.Create(uriFileStations)
+            //StorageFile file = await StorageFile.CreateStreamedFileFromUriAsync("Stations.xml",uriFileStations); //.GetFileFromApplicationUriAsync(new Uri("ms-appx:///file.txt"));
+
+            /*
+            using (StreamWriter writer = new StreamWriter(new FileStream("ms-appx:///assets/Stations.xml", FileMode.Create)))
+            {
+                serializer.Serialize(writer, stations);
+            }*/
+            int i = 0;
+            i++;
+        }
 
         public MainPage()
         {
@@ -102,10 +140,10 @@ namespace UWP_test
 
             if (stations.Count == 0) // станций в списке нет, нужно добавить
             {
+                //LoadStationsFromFile();
                 AddStationsToList();
             }
-            listBoxStations.SelectedIndex = 0;
-
+            //stations.Sort();
         }
 
         void PlayMethod()
@@ -121,7 +159,10 @@ namespace UWP_test
 
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
+            Action action = SaveStations;
+            Task.Run(action);
             mediaElement.Pause();
+
         }
 
         private void ChangeTrack_Click(object sender, RoutedEventArgs e)
@@ -136,9 +177,15 @@ namespace UWP_test
             mediaElement.Play();
         }
 
-        private void ListBox_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void ListBoxStations_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             PlayMethod();
+        }
+
+        private void ListBoxStations_Loaded(object sender, RoutedEventArgs e)
+        {
+            //listBoxStations.sort
+            //listBoxStations.SelectedIndex = 0;
         }
     }
 }
