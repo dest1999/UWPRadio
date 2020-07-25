@@ -133,8 +133,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="UWP_radio_TemporaryKey.pfx" />
-    <None Include="UWP_test_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Katy Perry - Hot N Cold.mp3">

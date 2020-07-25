@@ -9,13 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="450" d:DesignHeight="450">
 
     <Grid DataContext="">
-        <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="10,10,0,0" IsLooping="True"  />
+        <MediaPlayerElement x:Name="mediaElement" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"  />
         <Button x:Name="Play_Stop" Content="Play" Margin="15,298,0,0" Width="100" Click="Play_Click" RenderTransformOrigin="1.3,-3.125" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Button x:Name="Pause" Content="Pause/Save" Margin="155,298,0,0" Width="100" Click="Pause_Click" VerticalAlignment="Top"/>
         <Button x:Name="changeAlex" Content="ChangeAlex" Margin="15,366,0,0" Width="100" Click="ChangeTrack_Click" VerticalAlignment="Top"/>
         <Button x:Name="changeHot" Content="ChangeHot" Margin="155,366,0,0" Width="100" Click="ChangeHot_Click" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <ListBox x:Name="listBoxStations" Height="258" Margin="15,10,15,0" VerticalAlignment="Top" BorderThickness="4" BorderBrush="Gainsboro" 
-                 SelectionMode="Single" DoubleTapped="ListBoxStations_DoubleTapped" Loaded="ListBoxStations_Loaded" ItemsSource="{x:Bind stations}" DisplayMemberPath="Name"  />
+                 SelectionMode="Single" DoubleTapped="ListBoxStations_DoubleTapped" Loaded="ListBoxStations_Loaded" ItemsSource="{x:Bind stations}" DisplayMemberPath="Name" />
 
     </Grid>
 </Page>

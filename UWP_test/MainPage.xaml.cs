@@ -16,6 +16,9 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Media.Core;
+
+
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -29,7 +32,6 @@ namespace UWP_test
          * сохранение и считывание станций через файл (сериализация?)
          * добавление и удаление станций
          * сортировка списка станций
-         * фоновое воспроизведение
          */
 
 
@@ -142,14 +144,17 @@ namespace UWP_test
             {
                 //LoadStationsFromFile();
                 AddStationsToList();
+
             }
             //stations.Sort();
         }
 
         void PlayMethod()
         {
-            mediaElement.Source = stations[listBoxStations.SelectedIndex].UriStream;
-            mediaElement.Play();
+            if (mediaElement.Source == null) mediaElement.Source = MediaSource.CreateFromUri(stations[0].UriStream);
+            else mediaElement.Source = MediaSource.CreateFromUri(stations[listBoxStations.SelectedIndex].UriStream);
+            mediaElement.AutoPlay = true;
+            
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
@@ -161,20 +166,19 @@ namespace UWP_test
         {
             Action action = SaveStations;
             Task.Run(action);
-            mediaElement.Pause();
-
+            mediaElement.AutoPlay = false;
+            mediaElement.Source = null;
+            mediaElement.AutoPlay = true;
         }
 
         private void ChangeTrack_Click(object sender, RoutedEventArgs e)
         {
-            mediaElement.Source = uri;
-            mediaElement.Play();
+            mediaElement.Source = MediaSource.CreateFromUri(uri);
         }
 
         private void ChangeHot_Click(object sender, RoutedEventArgs e)
         {
-            mediaElement.Source = uriHot;
-            mediaElement.Play();
+            mediaElement.Source = MediaSource.CreateFromUri(uriHot);
         }
 
         private void ListBoxStations_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -186,6 +190,7 @@ namespace UWP_test
         {
             //listBoxStations.sort
             //listBoxStations.SelectedIndex = 0;
+            
         }
     }
 }
