@@ -1,21 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 namespace UWP_test
 {
-    //[Serializable]
-
-    public class Station
+    [DataContract]
+    public class Station: IComparable<Station>
     {
+        [DataMember]
         public string Name { get; }
-        public Uri UriStream { get; }
+        [DataMember]
+        public string UrlStream { get; }
+
+        public int CompareTo(Station s)
+        {
+            return this.Name.CompareTo(s.Name);
+        }
+
         public Station() { }
+
         public Station(string name, string urlStream)
         {
-            Name = name;
-            UriStream = new Uri(urlStream);
+            this.Name = name;
+            this.UrlStream = urlStream;
         }
     }
 }
