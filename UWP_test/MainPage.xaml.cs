@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Xml;
-using System.Xml.Serialization;
+//using System.Xml.Serialization;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Media.Core;
@@ -43,7 +43,7 @@ namespace UWP_test
         Uri uriFileStations = new Uri("ms-appx:///assets/Stations.xml");
         List<Station> stations = new List<Station>();
 
-        XmlSerializer serializer = new XmlSerializer(typeof(List<Station>));
+        //XmlSerializer serializer = new XmlSerializer(typeof(List<Station>));
         string content;
 
         #endregion
@@ -119,11 +119,11 @@ namespace UWP_test
             #endregion
 
             var ds = new DataContractSerializer(typeof(List<Station>));
+            
+            using (var fileRead = File.OpenRead("Assets/Stations.xml"))
+                stations = (List<Station>)ds.ReadObject(fileRead); // десериализация из файла
+            
             /*
-            using (Stream fileRead = File.OpenRead("Stations.xml"))
-                stations = (List<Station>)ds.ReadObject(fileRead); // десериализация
-            */
-
             var file = await ApplicationData.Current.LocalFolder.GetFileAsync("Stations.xml");
 
             var stream = await file.OpenAsync(FileAccessMode.Read);
@@ -141,7 +141,7 @@ namespace UWP_test
 
                 }
             }
-
+            */
 
 
             //var buffer = await FileIO.ReadBufferAsync(file);
@@ -171,8 +171,8 @@ namespace UWP_test
 
             if (stations.Count == 0) // станций в списке нет, нужно добавить
             {
-                //LoadStationsFromFile();
-                DirectAddStationsToList();
+                AddStationsToList();
+                //DirectAddStationsToList();
 
             }
             stations.Sort();

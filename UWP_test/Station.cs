@@ -9,9 +9,9 @@ namespace UWP_test
     public class Station: IComparable<Station>
     {
         [DataMember]
-        public string Name { get; }
+        public string Name { get; set; }
         [DataMember]
-        public string UrlStream { get; }
+        public string UrlStream { get; set; }
 
         public int CompareTo(Station s)
         {
