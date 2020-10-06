@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Media.Core;
 using System.Runtime.Serialization;
+using System.Threading;
 
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
@@ -102,7 +103,18 @@ namespace UWP_test
             stations.Add(new Station("М-Радио", "http://icecast.rest.str.ru:8000/mradio.aac"));
         }
 
-        private async void AddStationsToList()
+        private void SaveStationsToFile()
+        {
+            stations.Add(new Station("!tmp", ""));
+            stations.Sort();
+
+            var ds = new DataContractSerializer(typeof(List<Station>));
+
+            using (var fileWrite = File.Create("Stations.xml"))
+                ds.WriteObject(fileWrite, stations);
+        }
+
+        private void AddStationsToList()
         {
             #region закомментированные станции для добавления в List
             //stations.Add(new Station("Rock Arsenal", "https://online.rockarsenal.ru/rockarsenal_aacplus"));
@@ -154,17 +166,6 @@ namespace UWP_test
             stations.Sort();
         }
 
-        private void LoadStations()
-        {
-            
-
-            /*using (StreamReader reader = new StreamReader(new FileStream(@"Stations.xml", FileMode.Open)))
-            {
-                return (List<Station>)serializer.Deserialize(reader);
-            }*/
-        }
-
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -175,8 +176,7 @@ namespace UWP_test
                 //DirectAddStationsToList();
 
             }
-            stations.Sort();
-            mediaPlayerElement.MediaPlayer.RealTimePlayback = true; //уменьшение зависаний звука при начале воспроизведения
+            //stations.Sort();
         }
 
         void StopMediaPlaybackMethod()
@@ -188,7 +188,7 @@ namespace UWP_test
         void PlayMethod()
         {
             mediaPlayerElement.MediaPlayer.SetUriSource(new Uri(stations[listBoxStations.SelectedIndex].UrlStream));
-
+            
             //mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri(stations[listBoxStations.SelectedIndex].UrlStream)); с этим методом происходит утечка трафика и памяти
         }
 
@@ -213,6 +213,30 @@ namespace UWP_test
         private void Pause_Save_Click(object sender, RoutedEventArgs e)
         {
             StopMediaPlaybackMethod();
+            //SaveStationsToFile();
+        }
+
+        private void CheckBoxRealTimeTransport_Click(object sender, RoutedEventArgs e)
+        {
+            if ( checkBoxRealTimeTransport.IsChecked == true )
+                mediaPlayerElement.MediaPlayer.RealTimePlayback = true; //уменьшение зависаний звука при начале воспроизведения
+            else
+                mediaPlayerElement.MediaPlayer.RealTimePlayback = false; //уменьшение зависаний звука при начале воспроизведения
+
+        }
+
+        private void ToggleSwitchAlarmClock_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var timespan = new TimeSpan();
+            timespan = AlarmTimeSetter.Time - DateTime.Now.TimeOfDay;
+            //(DateTime);
+
+            var alarmTimerTask = Task.Delay(timespan);
+            PlayMethod();
+        }
+
+        private void ToggleSwitchAlarmClock_IsEnabledChanged(object sender, RoutedEventArgs e)
+        {
 
         }
     }
