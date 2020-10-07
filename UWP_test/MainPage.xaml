@@ -10,17 +10,17 @@
 
     <Grid DataContext="">
         <MediaPlayerElement x:Name="mediaPlayerElement" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="10,10,0,0" AutoPlay="True" />
-        <Button x:Name="Play_Stop" Content="Play" Margin="15,0,0,70" Width="100" Click="Play_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-        <Button x:Name="Pause" Content="Pause" Margin="155,0,0,70" Width="100" Click="Pause_Save_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Button x:Name="Play_Stop" Content="Play" Margin="15,0,0,80" Width="100" Height="40" Click="Play_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Button x:Name="Pause" Content="Pause" Margin="155,0,0,80" Width="100" Height="40" Click="Pause_Save_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
 
 
-        <ListBox x:Name="listBoxStations" Margin="15,10,15,120" VerticalAlignment="Stretch" BorderThickness="4" BorderBrush="Gainsboro" 
+        <ListBox x:Name="listBoxStations" Margin="15,10,15,140" VerticalAlignment="Stretch" BorderThickness="4" BorderBrush="Gainsboro" 
                  SelectionMode="Single" DoubleTapped="ListBoxStations_DoubleTapped" Loaded="ListBoxStations_Loaded"
                  ItemsSource="{x:Bind stations}" DisplayMemberPath="Name" HorizontalAlignment="Stretch" 
 
 
             />
-        <CheckBox x:Name="checkBoxRealTimeTransport" Content="RealTime Media" HorizontalAlignment="Left" Margin="295,0,0,70" VerticalAlignment="Bottom" Click="CheckBoxRealTimeTransport_Click"/>
+        <CheckBox x:Name="checkBoxRealTimeTransport" Content="RealTime Media" HorizontalAlignment="Right" Margin="20,80" VerticalAlignment="Bottom" Click="CheckBoxRealTimeTransport_Click"/>
         <ToggleSwitch x:Name="toggleSwitchAlarmClock" Header="AlarmClock" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15" Toggled="ToggleSwitchAlarmClock_IsEnabledChanged"/>
         <TimePicker x:Name="AlarmTimeSetter" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="130,0,0,15" Width="Auto" />
 

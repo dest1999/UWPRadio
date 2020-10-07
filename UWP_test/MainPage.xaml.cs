@@ -237,7 +237,9 @@ namespace UWP_test
 
         private void ToggleSwitchAlarmClock_IsEnabledChanged(object sender, RoutedEventArgs e)
         {
-
+            checkBoxRealTimeTransport.IsChecked = true;
         }
+
+
     }
 }
