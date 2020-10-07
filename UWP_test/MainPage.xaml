@@ -20,9 +20,9 @@
 
 
             />
-        <CheckBox x:Name="checkBoxRealTimeTransport" Content="RealTime Media" HorizontalAlignment="Right" Margin="20,80" VerticalAlignment="Bottom" Click="CheckBoxRealTimeTransport_Click"/>
+        <CheckBox x:Name="checkBoxRealTimeTransport" Content="RTM" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="60" Click="CheckBoxRealTimeTransport_Click" Margin="0,0,-45,80"/>
         <ToggleSwitch x:Name="toggleSwitchAlarmClock" Header="AlarmClock" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15" Toggled="ToggleSwitchAlarmClock_IsEnabledChanged"/>
-        <TimePicker x:Name="AlarmTimeSetter" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="130,0,0,15" Width="Auto" />
+        <TimePicker x:Name="AlarmTimeSetter" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="155,0,0,20" IsEnabled="False"  />
 
 
 

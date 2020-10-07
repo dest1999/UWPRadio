@@ -235,9 +235,22 @@ namespace UWP_test
             PlayMethod();
         }
 
+        //https://docs.microsoft.com/ru-ru/uwp/api/windows.ui.xaml.controls.timepicker.time?view=winrt-19041#Windows_UI_Xaml_Controls_TimePicker_Time
+        //https://docs.microsoft.com/en-us/dotnet/api/system.timespan?redirectedfrom=MSDN&view=netcore-3.1
+        //https://docs.microsoft.com/ru-ru/windows/uwp/design/controls-and-patterns/toggles
+
         private void ToggleSwitchAlarmClock_IsEnabledChanged(object sender, RoutedEventArgs e)
         {
-            checkBoxRealTimeTransport.IsChecked = true;
+            if (toggleSwitchAlarmClock.IsOn)
+            {
+                AlarmTimeSetter.IsEnabled = true;
+
+            }
+            else
+            {
+                AlarmTimeSetter.IsEnabled = false;
+
+            }
         }
 
 
