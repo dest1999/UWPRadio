@@ -225,15 +225,15 @@ namespace UWP_test
 
         }
 
-        private void ToggleSwitchAlarmClock_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            var timespan = new TimeSpan();
-            timespan = AlarmTimeSetter.Time - DateTime.Now.TimeOfDay;
-            //(DateTime);
+        //private void AlarmArming(uint time)
+        //{
+        //    var timespan = new TimeSpan();
+        //    timespan = AlarmTimeSetter.Time - DateTime.Now.TimeOfDay;
+        //    //(DateTime);
 
-            var alarmTimerTask = Task.Delay(timespan);
-            PlayMethod();
-        }
+        //    var alarmTimerTask = Task.Delay(timespan);
+        //    PlayMethod();
+        //}
 
         //https://docs.microsoft.com/ru-ru/uwp/api/windows.ui.xaml.controls.timepicker.time?view=winrt-19041#Windows_UI_Xaml_Controls_TimePicker_Time
         //https://docs.microsoft.com/en-us/dotnet/api/system.timespan?redirectedfrom=MSDN&view=netcore-3.1
